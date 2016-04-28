@@ -1,6 +1,7 @@
 package uk.co.danbeglin.phasetestapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,9 +19,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private Button mLoginButton;
 
+    private String mFileName = "persistantData";
+
 
     private String mUsername;
     private String mPassword;
+
+    private String mLastLogin;
 
     private EditText mUsernameEditText;
     private EditText mPasswordEditText;
@@ -32,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
         final EditText mUsernameEditText = (EditText) findViewById(R.id.loginEditText);
         final EditText mPasswordEditText = (EditText) findViewById(R.id.passwordEditText);
@@ -48,6 +55,23 @@ public class LoginActivity extends AppCompatActivity {
 
                 Log.d(TAG, mUsername);
                 Log.d(TAG, mPassword);
+
+
+                //REMOVING THIS CODE FIXED THE BUG!
+                //IT ALSO MADE A NEW BUG!
+
+                /*
+                It seems that, by reseting the [3] & [4] of the data, (for q# and score) we destroy persistance,
+                as whatever is saved is overwrote here.
+                 */
+
+                SharedPreferences sharedPref = getSharedPreferences(mFileName, MODE_PRIVATE);
+                String mSaveData = sharedPref.getString(mFileName, null);
+                mSaveData = mUsername + "," + mPassword + ",0,0";
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString(mFileName, mSaveData);
+                editor.commit();
+                //*/
 
                 Intent i = new Intent(LoginActivity.this, ExamActivity.class);
                 startActivity(i);
