@@ -15,6 +15,22 @@
     <string name="question_number_9">Question: 9</string>
     <string name="question_number_10">Question: 10</string>
     <string name="question_number_11">Question: 11</string>
+    <string name="question_number_12">Question: 12</string>
+    <string name="question_number_13">Question: 13</string>
+    <string name="question_number_14">Question: 14</string>
+    <string name="question_number_15">Question: 15</string>
+    <string name="question_number_16">Question: 16</string>
+    <string name="question_number_17">Question: 17</string>
+    <string name="question_number_18">Question: 18</string>
+    <string name="question_number_19">Question: 19</string>
+    <string name="question_number_20">Question: 20</string>
+    <string name="question_number_21">Question: 21</string>
+    <string name="question_number_22">Question: 22</string>
+    <string name="question_number_23">Question: 23</string>
+    <string name="question_number_24">Question: 24</string>
+    <string name="question_number_25">Question: 25</string>
+
+
 
     <string name="exam_question_1">What does the term \"Seperation of Concerns\" refer to?</string>
     <string name="exam_answer_1a">A: Removing the churches power from the United States of America Government</string>
@@ -81,6 +97,94 @@
     <string name="exam_answer_11b">B: User Interface Layer</string>
     <string name="exam_answer_11c">C: Application Logic Layer</string>
     <string name="exam_answer_11d">D: Domain Layer</string>
+
+    <string name="exam_question_12">What model is this a description of? − A classic life cycle, systematic and sequential with separate and distinct phases of specification and development</string>
+    <string name="exam_answer_12a">A: Waterfall </string>
+    <string name="exam_answer_12b">B: Agile </string>
+    <string name="exam_answer_12c">C: Extreme Programming </string>
+    <string name="exam_answer_12d">D: Throw away prototyping</string>
+
+    <string name="exam_question_13">What process model is this? A feature of imposes needed discipline (rigor and formality) on the development process</string>
+    <string name="exam_answer_13a">A: Waterfall</string>
+    <string name="exam_answer_13b">B: Agile</string>
+    <string name="exam_answer_13c">C: Extreme Programming</string>
+    <string name="exam_answer_13d">D: Throw away prototyping</string>
+
+    <string name="exam_question_14">What model is this a description of? Objective is to work with customers and to evolve a final system from an initial outline specification. Should start with well understood requirements and add new features as proposed by the customer.</string>
+    <string name="exam_answer_14a">A: Waterfall </string>
+    <string name="exam_answer_14b">B: Exploratory Development  </string>
+    <string name="exam_answer_14c">C: Extreme Programming </string>
+    <string name="exam_answer_14d">D: Throw away prototyping</string>
+
+
+    <string name="exam_question_15">What model is this a description of? Objective is to understand the system requirements. Should start with poorly understood requirements to clarify what is really needed.</string>
+    <string name="exam_answer_15a">A: Waterfall </string>
+    <string name="exam_answer_15b">B: Agile </string>
+    <string name="exam_answer_15c">C: Extreme Programming </string>
+    <string name="exam_answer_15d">D: Throw away prototyping</string>
+
+    <string name="exam_question_16">What model is this a description of? Based on systematic reuse where systems are integrated from existing components or COTS (Commercial-offthe-shelf) systems.</string>
+    <string name="exam_answer_16a">A: Waterfall </string>
+    <string name="exam_answer_16b">B: Exploratory Development  </string>
+    <string name="exam_answer_16c">C: Extreme Programming</string>
+    <string name="exam_answer_16d">D: Component based development</string>
+
+    <string name="exam_question_17">What model is this? breaks tasks into small increments with minimal planning, rather than long-term planning</string>
+    <string name="exam_answer_17a">A: Waterfall</string>
+    <string name="exam_answer_17b">B: Agile  </string>
+    <string name="exam_answer_17c">C: Extreme Programming</string>
+    <string name="exam_answer_17d">D: Component based development</string>
+
+    <string name="exam_question_18">Which model is this a benefit of? Flexibility of Design – Quicker Response to Changes</string>
+    <string name="exam_answer_18a">A: Waterfall</string>
+    <string name="exam_answer_18b">B: Agile</string>
+    <string name="exam_answer_18c">C: Extreme Programming</string>
+    <string name="exam_answer_18d">D: Throw away prototyping</string>
+
+    <string name="exam_question_19">Which model is this a disadvantage of? − Does not scale to larger projects</string>
+    <string name="exam_answer_19a">A: Waterfall</string>
+    <string name="exam_answer_19b">B: Agile</string>
+    <string name="exam_answer_19c">C: Extreme Programming</string>
+    <string name="exam_answer_19d">D: Throw away prototyping</string>
+    <!-- QUESTION 20 KICKED! -->
+    <string name="exam_question_20">What model is this? − provides a framework for object-oriented software engineering using UML </string>
+    <string name="exam_answer_20a">A: Waterfall </string>
+    <string name="exam_answer_20b">B: Unified Process </string>
+    <string name="exam_answer_20c">C: Extreme Programming </string>
+    <string name="exam_answer_20d">D: Throw away prototyping</string>
+
+    <string name="exam_question_21">What model has these 4 phases? Inception, elaboration, construction and transition</string>
+    <string name="exam_answer_21a">A: Waterfall</string>
+    <string name="exam_answer_21b">B: Agile</string>
+    <string name="exam_answer_21c">C: Unified Process</string>
+    <string name="exam_answer_21d">D: Throw away prototyping</string>
+
+    <string name="exam_question_22">What model is Architecture-centric ?</string>
+    <string name="exam_answer_22a">A: Waterfall</string>
+    <string name="exam_answer_22b">B: Agile</string>
+    <string name="exam_answer_22c">C: Unified Process</string>
+    <string name="exam_answer_22d">D: Throw away prototyping</string>
+
+
+    <!-- QUESTION 23 KICKED -->
+
+    <string name="exam_question_23">Which one of these is a Gang Of four pattern?</string>
+    <string name="exam_answer_23a">A: Singleton</string>
+    <string name="exam_answer_23b">B: Use case </string>
+    <string name="exam_answer_23c">C: Facade</string>
+    <string name="exam_answer_23d">D: Role</string>
+
+    <string name="exam_question_24">Which one of these is a Gang Of four pattern?</string>
+    <string name="exam_answer_24a">A: Factory</string>
+    <string name="exam_answer_24b">B: Abstract</string>
+    <string name="exam_answer_24c">C: Facade</string>
+    <string name="exam_answer_24d">D: Role</string>
+
+    <string name="exam_question_25">Which one of these is a Gang Of four pattern?</string>
+    <string name="exam_answer_25a">A: AbstractFactory</string>
+    <string name="exam_answer_25b">B: Abstract</string>
+    <string name="exam_answer_25c">C: Facade</string>
+    <string name="exam_answer_25d">D: Role</string>
 
     <string name="a_toast">You\'ve Answered: A</string>
     <string name="b_toast">You\'ve Answered: B</string>

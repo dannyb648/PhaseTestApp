@@ -20,6 +20,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import uk.co.danbeglin.phasetestapp.database.ScoreDBHelper;
 
 //Main class for Activity
@@ -92,6 +97,22 @@ public class ExamActivity extends AppCompatActivity {
             new ExamAnswer(R.string.question_number_9),
             new ExamAnswer(R.string.question_number_10),
             new ExamAnswer(R.string.question_number_11),
+            new ExamAnswer(R.string.question_number_12),
+            new ExamAnswer(R.string.question_number_13),
+            new ExamAnswer(R.string.question_number_14),
+            new ExamAnswer(R.string.question_number_15),
+            new ExamAnswer(R.string.question_number_16),
+            new ExamAnswer(R.string.question_number_17),
+            new ExamAnswer(R.string.question_number_18),
+            new ExamAnswer(R.string.question_number_19),
+            new ExamAnswer(R.string.question_number_20),
+            new ExamAnswer(R.string.question_number_21),
+            new ExamAnswer(R.string.question_number_22),
+            new ExamAnswer(R.string.question_number_23),
+            new ExamAnswer(R.string.question_number_24),
+            new ExamAnswer(R.string.question_number_25),
+
+
     };
 
     //Same as above, but these Objects take a Char for correct answer.
@@ -107,6 +128,21 @@ public class ExamActivity extends AppCompatActivity {
             new ExamQuestion(R.string.exam_question_9, 'A'),
             new ExamQuestion(R.string.exam_question_10, 'B'),
             new ExamQuestion(R.string.exam_question_11, 'C'),
+
+            new ExamQuestion(R.string.exam_question_12, 'A'),
+            new ExamQuestion(R.string.exam_question_13, 'A'),
+            new ExamQuestion(R.string.exam_question_14, 'B'),
+            new ExamQuestion(R.string.exam_question_15, 'D'),
+            new ExamQuestion(R.string.exam_question_16, 'D'),
+            new ExamQuestion(R.string.exam_question_17, 'B'),
+            new ExamQuestion(R.string.exam_question_18, 'B'),
+            new ExamQuestion(R.string.exam_question_19, 'B'),
+            new ExamQuestion(R.string.exam_question_20, 'B'),
+            new ExamQuestion(R.string.exam_question_21, 'C'),
+            new ExamQuestion(R.string.exam_question_22, 'C'),
+            new ExamQuestion(R.string.exam_question_23, 'A'),
+            new ExamQuestion(R.string.exam_question_24, 'A'),
+            new ExamQuestion(R.string.exam_question_25, 'A'),
     };
 
     //Exam answers. Maybe there was a better way to do this, but I dont know it.
@@ -122,6 +158,21 @@ public class ExamActivity extends AppCompatActivity {
             new ExamAnswer(R.string.exam_answer_9a),
             new ExamAnswer(R.string.exam_answer_10a),
             new ExamAnswer(R.string.exam_answer_11a),
+            new ExamAnswer(R.string.exam_answer_12a),
+            new ExamAnswer(R.string.exam_answer_13a),
+            new ExamAnswer(R.string.exam_answer_14a),
+            new ExamAnswer(R.string.exam_answer_15a),
+            new ExamAnswer(R.string.exam_answer_16a),
+            new ExamAnswer(R.string.exam_answer_17a),
+            new ExamAnswer(R.string.exam_answer_18a),
+            new ExamAnswer(R.string.exam_answer_19a),
+            new ExamAnswer(R.string.exam_answer_20a),
+            new ExamAnswer(R.string.exam_answer_21a),
+            new ExamAnswer(R.string.exam_answer_22a),
+            new ExamAnswer(R.string.exam_answer_23a),
+            new ExamAnswer(R.string.exam_answer_24a),
+            new ExamAnswer(R.string.exam_answer_25a),
+
     };
 
     private ExamAnswer[] mExamAnswersB = new ExamAnswer[]{
@@ -136,6 +187,20 @@ public class ExamActivity extends AppCompatActivity {
             new ExamAnswer(R.string.exam_answer_9b),
             new ExamAnswer(R.string.exam_answer_10b),
             new ExamAnswer(R.string.exam_answer_11b),
+            new ExamAnswer(R.string.exam_answer_12b),
+            new ExamAnswer(R.string.exam_answer_13b),
+            new ExamAnswer(R.string.exam_answer_14b),
+            new ExamAnswer(R.string.exam_answer_15b),
+            new ExamAnswer(R.string.exam_answer_16b),
+            new ExamAnswer(R.string.exam_answer_17b),
+            new ExamAnswer(R.string.exam_answer_18b),
+            new ExamAnswer(R.string.exam_answer_19b),
+            new ExamAnswer(R.string.exam_answer_20b),
+            new ExamAnswer(R.string.exam_answer_21b),
+            new ExamAnswer(R.string.exam_answer_22b),
+            new ExamAnswer(R.string.exam_answer_23b),
+            new ExamAnswer(R.string.exam_answer_24b),
+            new ExamAnswer(R.string.exam_answer_25b),
     };
 
     private ExamAnswer[] mExamAnswersC = new ExamAnswer[]{
@@ -150,6 +215,20 @@ public class ExamActivity extends AppCompatActivity {
             new ExamAnswer(R.string.exam_answer_9c),
             new ExamAnswer(R.string.exam_answer_10c),
             new ExamAnswer(R.string.exam_answer_11c),
+            new ExamAnswer(R.string.exam_answer_12c),
+            new ExamAnswer(R.string.exam_answer_13c),
+            new ExamAnswer(R.string.exam_answer_14c),
+            new ExamAnswer(R.string.exam_answer_15c),
+            new ExamAnswer(R.string.exam_answer_16c),
+            new ExamAnswer(R.string.exam_answer_17c),
+            new ExamAnswer(R.string.exam_answer_18c),
+            new ExamAnswer(R.string.exam_answer_19c),
+            new ExamAnswer(R.string.exam_answer_20c),
+            new ExamAnswer(R.string.exam_answer_21c),
+            new ExamAnswer(R.string.exam_answer_22c),
+            new ExamAnswer(R.string.exam_answer_23c),
+            new ExamAnswer(R.string.exam_answer_24c),
+            new ExamAnswer(R.string.exam_answer_25c),
     };
 
     private ExamAnswer[] mExamAnswersD = new ExamAnswer[]{
@@ -164,6 +243,20 @@ public class ExamActivity extends AppCompatActivity {
             new ExamAnswer(R.string.exam_answer_9d),
             new ExamAnswer(R.string.exam_answer_10d),
             new ExamAnswer(R.string.exam_answer_11d),
+            new ExamAnswer(R.string.exam_answer_12d),
+            new ExamAnswer(R.string.exam_answer_13d),
+            new ExamAnswer(R.string.exam_answer_14d),
+            new ExamAnswer(R.string.exam_answer_15d),
+            new ExamAnswer(R.string.exam_answer_16d),
+            new ExamAnswer(R.string.exam_answer_17d),
+            new ExamAnswer(R.string.exam_answer_18d),
+            new ExamAnswer(R.string.exam_answer_19d),
+            new ExamAnswer(R.string.exam_answer_20d),
+            new ExamAnswer(R.string.exam_answer_21d),
+            new ExamAnswer(R.string.exam_answer_22d),
+            new ExamAnswer(R.string.exam_answer_23d),
+            new ExamAnswer(R.string.exam_answer_24d),
+            new ExamAnswer(R.string.exam_answer_25d),
     };
 
 
@@ -228,22 +321,6 @@ public class ExamActivity extends AppCompatActivity {
             mScoreList.add(thisScore);
 
 
-            /*
-            START OF DB CODE
-             */
-
-
-
-
-
-
-            /*
-            END OF DB CODE
-             */
-
-
-
-            //THIS CODE BLOCK NEEDS REMOVING
 
             SharedPreferences sharedPref = getSharedPreferences(mFileName, MODE_PRIVATE);
             //set up editor
@@ -255,11 +332,19 @@ public class ExamActivity extends AppCompatActivity {
             editor.putString(mFileName, mResetScore);
             editor.commit();
 
+            String mUrl = "http://jrbradley.co.uk:1337/leaderboard/post/" + mUsername + "/" + mPassword + "/" + "1" + "/" + mScore;
+
+
+            InternetThread thread = new InternetThread();
+
+            thread.doInBackground(mUrl);
 
 
             //WE NEED TO UPLOAD THE ACTUAL SCORE HERE! IT IS RESET BELOW!!!
 
             //String mUrl = "https://jrbradley.co.uk:1337/leaderboard/post/";  // mUsername + "/" + + "/" Paul/lemon54/9/65;
+
+
 
             //
             /*
@@ -436,13 +521,6 @@ public class ExamActivity extends AppCompatActivity {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putInt(KEYSTATE, mCurrentQuestion);
-
-
-
-        //FileOutputStream outputStream = getApplicationContext().openFileOutput(mFileName, Context.MODE_PRIVATE);
-        //outputStream.write(mCurrentQuestion);
-       // outputStream.close();
-
         savedInstanceState.putInt(KEYSCORE, mScore);
     }
 
