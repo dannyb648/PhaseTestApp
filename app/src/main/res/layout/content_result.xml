@@ -36,53 +36,7 @@
         android:layout_height="wrap_content"
         android:text="Log Out"
         android:id="@+id/LogOutButton"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="57dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Top Score"
-        android:id="@+id/textView"
-        android:layout_below="@+id/resultTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="User:    "
-        android:id="@+id/usernameTextResult"
         android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/resultTextView"
-        android:layout_alignEnd="@+id/resultTextView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/userNameTextView"
-        android:layout_alignTop="@+id/usernameTextResult"
-        android:layout_toRightOf="@+id/resultTextView"
-        android:layout_toEndOf="@+id/resultTextView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Score:   "
-        android:id="@+id/scoreText"
-        android:layout_below="@+id/usernameTextResult"
-        android:layout_alignRight="@+id/userNameTextView"
-        android:layout_alignEnd="@+id/userNameTextView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/scoreTextView"
-        android:layout_below="@+id/userNameTextView"
-        android:layout_alignLeft="@+id/userNameTextView"
-        android:layout_alignStart="@+id/userNameTextView" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

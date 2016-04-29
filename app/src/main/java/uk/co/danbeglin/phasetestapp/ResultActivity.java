@@ -19,16 +19,13 @@ import org.w3c.dom.Text;
 public class ResultActivity extends AppCompatActivity {
 
     private TextView mResultDisplay;
-    private TextView mTopUserDisplay;
-    private TextView mTopScoreDisplay;
+
 
     private static final String mFileName = "persistantData";
     private static final String TAG = "DEBUG";
 
     private Button mLogOut;
 
-    private String topUser;
-    private String topScore;
 
 
     @Override
@@ -41,26 +38,32 @@ public class ResultActivity extends AppCompatActivity {
 
 
         mResultDisplay = (TextView) findViewById(R.id.resultTextView);
-        mTopUserDisplay = (TextView) findViewById(R.id.userNameTextView);
-        mTopScoreDisplay = (TextView) findViewById(R.id.scoreTextView);
 
         //GET DATA
 
 
-        //topUser ;
-        //topScore;
 
-        mTopUserDisplay.setText(topUser);
-        mTopScoreDisplay.setText(topScore + "%");
+        /*
+        The code below is for the Onlnie database pulling.
+        Due to constraints on ASyncTask, I cannot get them to work.
+        I'm sure it is a trivial issue, so I have included the lines to highlight my potential feature.
+         */
 
+        /*
+        InternetThread thread = new InternetThread();
+        thread.doInBackground("http://jrbradley.co.uk:1337/leaderboard/get/highscores/1");
+        */
 
         mLogOut = (Button)findViewById(R.id.LogOutButton);
         mLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                InternetThread thread = new InternetThread();
 
-                thread.doInBackground("http://jrbradley.co.uk:1337/leaderboard/get/highscores/1");
+                //These lines should not be in
+
+
+
+
 
                 Intent i = new Intent(ResultActivity.this, LoginActivity.class);
                 startActivity(i);
@@ -70,7 +73,7 @@ public class ResultActivity extends AppCompatActivity {
 
 
 
-                SharedPreferences sharedPrefAgain = getSharedPreferences(mFileName, MODE_PRIVATE);
+        SharedPreferences sharedPrefAgain = getSharedPreferences(mFileName, MODE_PRIVATE);
         String mSavedDataAgain = sharedPrefAgain.getString(mFileName, null);
 
         if(mSavedDataAgain != null) {

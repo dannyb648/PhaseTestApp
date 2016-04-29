@@ -1,4 +1,5 @@
 package uk.co.danbeglin.phasetestapp;
+//The package for Java
 
 
 //Imports all auto gen'd by IntelliJ
@@ -6,7 +7,6 @@ package uk.co.danbeglin.phasetestapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,13 +19,6 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
-import uk.co.danbeglin.phasetestapp.database.ScoreDBHelper;
 
 //Main class for Activity
 //mainExamActivity Class, inherits from AppCompatActivity
@@ -55,12 +48,8 @@ public class ExamActivity extends AppCompatActivity {
     private String mUsername;
     private String mPassword;
 
+    //This is used to store the activity context during the db stuff
     private Context mDBContext;
-
-
-
-
-    //private SQLiteDatabase mScoreDatabase;
 
     //These are our Buttons for each answer.
     private Button mAButton;
@@ -261,11 +250,8 @@ public class ExamActivity extends AppCompatActivity {
 
 
 
-    //These store our vars
-    //Vars for my Buttons, "mXButton" is convention, and useful.
     //These methods below just change the question texts for each list.
-    //TODO put these into a big function, so I only call one each time.
-
+    //Question Number, Question and 4 answers!
     private void updateQuestionNumber() {
         int questionNum = mExamQuestionNumber[mCurrentQuestion].getTextResId();
         mExamQuestionNumberTextView.setText(questionNum);
@@ -297,9 +283,11 @@ public class ExamActivity extends AppCompatActivity {
     }
 
     private void checkAnswer(char ans) {
+        //is the ans Char passed, the same as whats in the Question?
         if(ans == mExamQuestions[mCurrentQuestion].getCorrectAnswer()) {
+            //increment score!
             mScore = mScore + 1;
-            //DEBUG TODO Remove.
+            //My own debug.
             Log.d(TAG, Integer.toString(mScore));
         }
     }
@@ -308,45 +296,46 @@ public class ExamActivity extends AppCompatActivity {
         //if we are at the end of the exam
         if(mCurrentQuestion == mExamQuestionNumber.length - 1) {
 
+            //Build up a string of all our data.
             String finalScore = "Username : " + mUsername + " Password: " + mPassword + " Score: " + String.valueOf(mScore);
             Log.d(TAG, finalScore);
 
+            //put score into Score Object!
             Score thisScore = new Score();
             thisScore.setScore(mScore);
             thisScore.setUserName(mUsername);
             thisScore.setPassword(mPassword);
 
+            //This is used for the Database!
+
             mDBContext = this.getApplicationContext();
             ScoreList mScoreList = new ScoreList(mDBContext);
+            //Add score to domain layer!
             mScoreList.add(thisScore);
 
 
-
+            //Save data!
             SharedPreferences sharedPref = getSharedPreferences(mFileName, MODE_PRIVATE);
             //set up editor
             SharedPreferences.Editor editor = sharedPref.edit();
             //set up data to save (reset score, save usernames.)
             String mResetScore = mUsername + "," + mPassword + "," +  mCurrentQuestion + "," + mScore ;
-            Log.d(TAG, "SAVED SCORE AND STUFF");
-
+            Log.d(TAG, "SAVED SCORE");
+            //Save string to file.
             editor.putString(mFileName, mResetScore);
             editor.commit();
 
+            //UURL to store data on My Database (Friend is hosting it for me on his Server on port :1337)
             String mUrl = "http://jrbradley.co.uk:1337/leaderboard/post/" + mUsername + "/" + mPassword + "/" + "1" + "/" + mScore;
 
+            //I need to use this InternetThread object, because calling HTTP
+            //In the main thread is apparently illegal.
 
+            //This feature isnt working. I can't work out why right now.
+            //In theory, it should work!
             InternetThread thread = new InternetThread();
-
             thread.doInBackground(mUrl);
 
-
-            //WE NEED TO UPLOAD THE ACTUAL SCORE HERE! IT IS RESET BELOW!!!
-
-            //String mUrl = "https://jrbradley.co.uk:1337/leaderboard/post/";  // mUsername + "/" + + "/" Paul/lemon54/9/65;
-
-
-
-            //
             /*
             sharedPref = getSharedPreferences(mFileName, MODE_PRIVATE);
             String mSavedData = sharedPref.getString(mFileName, null);
@@ -362,10 +351,11 @@ public class ExamActivity extends AppCompatActivity {
             */
 
 
-
+            //Call a new Activity! Switch to Result Page!
             Intent i = new Intent(ExamActivity.this, ResultActivity.class);
             startActivity(i);
         } else {
+            //if we are not at the end of the exam, increment question.
             mCurrentQuestion = (mCurrentQuestion + 1);
         }
 
@@ -388,7 +378,28 @@ public class ExamActivity extends AppCompatActivity {
         mExamAnswerCTextView = (TextView) findViewById(R.id.exam_answer_c);
         mExamAnswerDTextView = (TextView) findViewById(R.id.exam_answer_d);
 
+        /*
+        This is the code which I used to set up the activity if it was destroyed wrongly in the last session
+        Ideally, if the session was cancelled (onDestroy called), without the exam finishing, it should flag and
+        re-create the previous exam stat using this data.
 
+        I couldn't get the flags to work properly, and this is also not the ideal way to deal with data
+        in android. I have included the codeblock to show you the idea, and hopefully you will work
+        out what I was trying to do and consider how close I was.
+         */
+
+        /*
+        SharedPreferences sharedPrefAgain = getSharedPreferences(mFileName, MODE_PRIVATE);
+        String mSavedDataAgain = sharedPrefAgain.getString(mFileName, null);
+
+        if(mSavedDataAgain != null) {
+            String mBreak = "[,]";
+            String[] mDataList = mSavedDataAgain.split(mBreak);
+            mScore = Integer.parseInt(mDataList[3]);
+            mCurrentQuestion = Integer.parseInt(mDataList[2]);
+            Log.d(TAG, String.valueOf(mScore));
+        }
+        */
 
         //Sets up our Button Text
         mAButton = (Button) findViewById(R.id.exam_button_a);
@@ -397,11 +408,11 @@ public class ExamActivity extends AppCompatActivity {
             //This is an anonymous class, since why waste head space?
             @Override
             public void onClick(View v) {
+                //check if this is the right answer
                 checkAnswer('A');
 
                 checkEnd();
-                //TODO check this actually works still!
-
+                // Show toast then update screen
                 Toast.makeText(ExamActivity.this, R.string.a_toast, Toast.LENGTH_SHORT).show();
                 updateExamQuestion();
                 updateQuestionNumber();
@@ -412,6 +423,7 @@ public class ExamActivity extends AppCompatActivity {
             }
         });
 
+        //Same as A!
         mBButton = (Button) findViewById(R.id.exam_button_b);
         mBButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -429,6 +441,7 @@ public class ExamActivity extends AppCompatActivity {
             }
         });
 
+        //Same as A & B!
         mCButton = (Button) findViewById(R.id.exam_button_c);
         mCButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -446,6 +459,7 @@ public class ExamActivity extends AppCompatActivity {
             }
         });
 
+        //Same as A, B & D!
         mDButton = (Button) findViewById(R.id.exam_button_d);
         mDButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -467,14 +481,21 @@ public class ExamActivity extends AppCompatActivity {
 
 
         //PERSISTANT DATA, 25% of the Marks Shouldnt be laughed at!
+        //I admit 3 hours before submission, I couldnt get all the persistant data stuff working, but this does!
+        //I have a database too!
+
+        //open SharePref, and set it up
         SharedPreferences sharedPrefAgain = getSharedPreferences(mFileName, MODE_PRIVATE);
+        //Set up a string, from the current sharedPref!
         String mSavedDataAgain = sharedPrefAgain.getString(mFileName, null);
 
         Log.d(TAG, "READING STUFF FROM FILES");
+        //If it exists
         if(mSavedDataAgain != null) {
 
 
             Log.d(TAG, "SAVED DATA : " + mSavedDataAgain);
+            //Break the CSV into String array
             String mBreak = "[,]";
             String[] mDataList = mSavedDataAgain.split(mBreak);
 

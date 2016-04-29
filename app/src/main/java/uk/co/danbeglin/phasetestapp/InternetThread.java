@@ -19,29 +19,38 @@ import javax.xml.parsers.SAXParserFactory;
  */
 public class InternetThread extends AsyncTask<String, Void, String> {
 
-
-
     public String doInBackground(String... urlToRead){
+        //String Builder object
         StringBuilder result = new StringBuilder();
+        //Try catch to avoid a crash
         try {
 
+            //new URL from our top score.
             URL url = new URL(urlToRead[0]);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            //HTTP connection object
+            HttpURLConnection cn = (HttpURLConnection) url.openConnection();
+            //set up HTTP request
+            cn.setRequestMethod("GET");
+            //Parse JSON file badly
+            BufferedReader rd = new BufferedReader(new InputStreamReader(cn.getInputStream()));
+
             String line;
+            //While sting isnt empty...
             while ((line = rd.readLine()) != null) {
                 result.append(line);
             }
+            //Close
             rd.close();
         } catch (Exception E) {
 
         }
+        //pass back the result, as a String
         return result.toString();
     }
 
     protected void onPostExecute(String url) {
-        Log.d("DEBUG", url);
+        //This is part of AsyncTask, so I need it, but I just need a debug.
+        Log.d("DEBUG", "THIS HAS RUN!");
     }
 }
 
